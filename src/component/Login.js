@@ -1,18 +1,22 @@
-import { Box, Button,TextField } from '@mui/material'
+import { Box, Button, TextField  } from '@mui/material'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate ,NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Login = () => {
     const navigate = useNavigate()
+    const data = useSelector(data => data)
 
+    console.log("data+++++++",data);
 
-    const handelSubmit = () =>{
-        navigate('/Register')
+    const handelSubmit = () => {
+        localStorage.setItem("user","test")
+        navigate('/')
     }
-  
+
     return (
         <div style={{ textAlign: '-webkit-center' }}>
-            <Box 
+            <Box
                 sx={{
                     width: 350,
                     height: 300,
@@ -51,6 +55,8 @@ const Login = () => {
                         opacity: [0.9, 0.8, 0.7],
                     }
                 }} onClick={handelSubmit}>Login</Button>
+                <br />
+                 <NavLink to="/Register" style={{color:'white'}}>Register</NavLink>
             </Box>
         </div>
     )

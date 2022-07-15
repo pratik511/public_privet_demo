@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Box, Button,TextField } from '@mui/material'
+import { Box, Button,TextField  } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,NavLink } from 'react-router-dom'
+import { userRegister } from '../redux/action/Register.action'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -9,7 +10,7 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
 const data = {
@@ -32,6 +33,7 @@ const data = {
     // }
 
     const handelSubmit = () =>{
+        dispatch(userRegister(data))
         navigate('/Login')
     }
 
@@ -63,7 +65,7 @@ const data = {
                             "& > fieldset": { borderColor: "white" },
                         }
                     }
-                }} id="outlined-basic" label="Name" variant="outlined" type='text' name='name' onChange={e => setName(e.target.value)} helperText={name == "" ? " " : name} />
+                }} id="outlined-basic" label="Name" variant="outlined" type='text' name='name' onChange={e => setName(e.target.value)} helperText={name === "" ? " " : name} />
                 <TextField fullWidth sx={{
                     mt: 0.5, input: { color: 'white' },
                     "& .MuiInputLabel-root": { color: 'white' }, "& .MuiOutlinedInput-root": {
@@ -74,7 +76,7 @@ const data = {
                             "& > fieldset": { borderColor: "white" },
                         }
                     }
-                }} id="outlined-basic" label="Number" variant="outlined" type='number' name='number' onChange={e => setNumber(e.target.value)} helperText={name == "" ? " " : name} />
+                }} id="outlined-basic" label="Number" variant="outlined" type='number' name='number' onChange={e => setNumber(e.target.value)} helperText={name === "" ? " " : name} />
                 <TextField fullWidth sx={{
                     mt: 0.5, input: { color: 'white' },
                     "& .MuiInputLabel-root": { color: 'white' }, "& .MuiOutlinedInput-root": {
@@ -85,19 +87,22 @@ const data = {
                             "& > fieldset": { borderColor: "white" },
                         }
                     }
-                }} id="outlined-basic" label="Email" variant="outlined" type='email' name='email' onChange={e => setEmail(e.target.value)} helperText={name == "" ? " " : name} />
+                }} id="outlined-basic" label="Email" variant="outlined" type='email' name='email' onChange={e => setEmail(e.target.value)} helperText={name === "" ? " " : name} />
                 <TextField fullWidth sx={{
                     mt: 0.5, input: { color: 'white' },
                     "& .MuiInputLabel-root": { color: 'white' }, "& .MuiOutlinedInput-root": {
                         "& > fieldset": { borderColor: "white" },
                     }
-                }} id="outlined-basic" label="Password" variant="outlined" type='password' name='password' onChange={e => setPassword(e.target.value)} helperText={name == "" ? " " : name}  />
+                }} id="outlined-basic" label="Password" variant="outlined" type='password' name='password' onChange={e => setPassword(e.target.value)} helperText={name === "" ? " " : name}  />
                 <Button variant="contained" sx={{
                     mt: 2.5, width: 150, fontSize: 15, '&:hover': {
                         backgroundColor: 'primary.main',
                         opacity: [0.9, 0.8, 0.7],
                     }
                 }} onClick={handelSubmit}>Register</Button>
+                 <br />
+                 <NavLink to="/Login" style={{color:'white'}}>Login</NavLink>
+
             </Box>
         </div>
   )
